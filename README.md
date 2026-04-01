@@ -109,6 +109,7 @@ This means you **do not** need to manually start the server. Claude handles it a
 Once connected, you can ask Claude things like:
 
 - *"Create a bug ticket in project XYZ for login page crash"*
+- *"Create a story about updating the landing page in project XYZ"*
 - *"Fetch details of ticket PROJ-123"*
 - *"Add a comment to PROJ-456 saying it's been fixed"*
 - *"List all projects in Jira"*
@@ -118,6 +119,9 @@ Internally these map to:
 | Tool | Description |
 |---|---|
 | **Create Bug** | Creates a Jira bug report |
+| **Create Story** | Creates a Jira story |
+| **Create Task** | Creates a Jira task |
+| **Create Epic** | Creates a Jira epic |
 | **Get Issue** | Fetches details of a ticket by number |
 | **Update Issue** | Updates fields of an existing issue |
 | **Add Comment** | Adds a comment to an issue |
