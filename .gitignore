@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment / secrets
+.env
+*.env
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Salesforce (not needed in this repo)
+.sfdx/
