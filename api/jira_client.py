@@ -72,7 +72,7 @@ def get_issue(issue_key: str):
 
 def search_issues(jql: str, max_results: int = 10):
     creds = get_jira_credentials()
-    url = f"{creds['url']}/rest/api/3/search"
+    url = f"{creds['url']}/rest/api/3/search/jql"
     
     payload = {
         "jql": jql,

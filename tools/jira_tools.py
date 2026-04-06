@@ -268,6 +268,43 @@ def register_tools(mcp):
             return format_error(e)
 
     @mcp.tool()
+    def find_tickets(assignee: str = None, status: str = None, name: str = None, max_results: int = 10) -> str:
+        """
+        Searches for Jira issues by assignee, status, and/or name.
+        
+        Args:
+            assignee: The assignee's username, display name, account ID, or 'currentUser()'.
+            status: The status name (e.g., 'In Progress', 'Done', ' Functional Sign-off').
+            name: Text to search for in the summary, description, or comment.
+            max_results: The maximum number of issues to return (default 80).
+        """
+        valid, msg = check_jira_credentials()
+        if not valid:
+            return json.dumps({"success": False, "error": msg})
+
+        try:
+            conditions = []
+            if assignee:
+                conditions.append(f'assignee = "{assignee}"')
+            if status:
+                conditions.append(f'status = "{status}"')
+            if name:
+                conditions.append(f'text ~ "{name}"')
+                
+            if not conditions:
+                return json.dumps({"success": False, "error": "At least one search parameter (assignee, status, or name) must be provided."})
+                
+            jql = " AND ".join(conditions)
+            results = jira_client.search_issues(jql, max_results)
+            return json.dumps({
+                "success": True,
+                "jql_used": jql,
+                "results": results
+            }, indent=2)
+        except Exception as e:
+            return format_error(e)
+
+    @mcp.tool()
     def update_issue(issue_key: str, summary: str = None, description: str = None) -> str:
         """
         Updates the summary or description of a Jira issue.
