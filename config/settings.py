@@ -15,5 +15,8 @@ def get_jira_credentials():
         "url": base_url.rstrip('/') if base_url else "",
         "email": os.environ.get("JIRA_EMAIL"),
         "token": os.environ.get("JIRA_API_TOKEN"),
-        "observed_in_field_id": os.environ.get("JIRA_OBSERVED_IN_FIELD_ID", "customfield_10097")
+        "observed_in_field_id": os.environ.get("JIRA_OBSERVED_IN_FIELD_ID", "customfield_10097"),
+        "sprint_field_id": os.environ.get("JIRA_SPRINT_FIELD_ID", "customfield_10020"),
+        "story_points_field_id": os.environ.get("JIRA_STORY_POINTS_FIELD_ID", "customfield_10016"),
+        "epic_link_field_id": os.environ.get("JIRA_EPIC_LINK_FIELD_ID", "customfield_10014"),
     }
